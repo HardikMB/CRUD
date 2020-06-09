@@ -1,8 +1,10 @@
 package com.springops.crud.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,131 +12,136 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 
 @Entity
 @Table(name = "Branch_master")
 public class Branch {
 
 	@Id
-	 
 	@Column(name = "Branch_id")
-	private int BranchId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int branchId;
 	@Column(name = "BRANCH_CODE")
-	private String BranchCode;
+	private String branchCode;
 	
 	@Column(name = "ADDRESS1")
-	private String Address1;
+	private String address1;
 	
 	@Column(name = "ADDRESS2")
-	private String Address2;
+	private String address2;
 	
 	@Column(name = "BRANCH_CITY")
-	private String BranchCity;
+	private String branchCity;
 	
 	@Column(name = "BRANCH_STATE")
-	private String BranchState;
+	private String branchState;
 	
 	@Column(name = "PIN_CODE")
-	private String PinCode;
+	private String pinCode;
 	
 	@Column(name = "IFSC_CODE")
-	private String IFSCcode;
+	private String iFSCcode;
 	
 	
+//	@ManyToOne(targetEntity = Region.class,fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+@JoinColumn( name = "region_Id",nullable = false)
+@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "region_id",nullable = false)
-	private Region region;
+	private Region theregion;
 
 
 	public int getBranchId() {
-		return BranchId;
+		return branchId;
 	}
 
 
 	public void setBranchId(int branchId) {
-		BranchId = branchId;
+		this.branchId = branchId;
 	}
 
 
 	public String getBranchCode() {
-		return BranchCode;
+		return branchCode;
 	}
 
 
 	public void setBranchCode(String branchCode) {
-		BranchCode = branchCode;
+		this.branchCode = branchCode;
 	}
 
 
 	public String getAddress1() {
-		return Address1;
+		return address1;
 	}
 
 
 	public void setAddress1(String address1) {
-		Address1 = address1;
+		this.address1 = address1;
 	}
 
 
 	public String getAddress2() {
-		return Address2;
+		return address2;
 	}
 
 
 	public void setAddress2(String address2) {
-		Address2 = address2;
+		this.address2 = address2;
 	}
 
 
 	public String getBranchCity() {
-		return BranchCity;
+		return branchCity;
 	}
 
 
 	public void setBranchCity(String branchCity) {
-		BranchCity = branchCity;
+		this.branchCity = branchCity;
 	}
 
 
 	public String getBranchState() {
-		return BranchState;
+		return branchState;
 	}
 
 
 	public void setBranchState(String branchState) {
-		BranchState = branchState;
+		this.branchState = branchState;
 	}
 
 
 	public String getPinCode() {
-		return PinCode;
+		return pinCode;
 	}
 
 
 	public void setPinCode(String pinCode) {
-		PinCode = pinCode;
+		this.pinCode = pinCode;
 	}
 
 
-	public String getIFSCcode() {
-		return IFSCcode;
+	public String getiFSCcode() {
+		return iFSCcode;
 	}
 
 
-	public void setIFSCcode(String iFSCcode) {
-		IFSCcode = iFSCcode;
+	public void setiFSCcode(String iFSCcode) {
+		this.iFSCcode = iFSCcode;
 	}
 
 
 	public Region getRegion() {
-		return region;
+		return theregion;
 	}
 
 
 	public void setRegion(Region region) {
-//		this.region.setRegionId(region.getRegionId());
-		this.region = region;
+		this.theregion = region;
 	}
+
+
  
 }
 
