@@ -6,13 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.springops.crud.dao.RegionDao;
+import com.springops.crud.dao.RegionRepository;
 import com.springops.crud.model.Region;
 
 @Component
 public class regionSerceIMPL implements regionService {
 	@Autowired
-	private RegionDao region;
+	private RegionRepository region;
 	@Override
 	public List<Region> getRegions() {
 		// TODO Auto-generated method stub

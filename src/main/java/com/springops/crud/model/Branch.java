@@ -1,6 +1,8 @@
 package com.springops.crud.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import net.minidev.json.annotate.JsonIgnore;
 
 
 @Entity
@@ -45,11 +46,10 @@ public class Branch {
 	private String iFSCcode;
 	
 	
-//	@ManyToOne(targetEntity = Region.class,fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-@JoinColumn( name = "region_Id",nullable = false)
-@JsonIgnore
-	@ManyToOne
-	private Region theregion;
+	@ManyToOne(fetch=FetchType.LAZY,optional = false)
+	@JoinColumn( name = "region_Id",nullable = false)
+	@JsonBackReference
+	private Region region;
 
 
 	public int getBranchId() {
@@ -133,12 +133,12 @@ public class Branch {
 
 
 	public Region getRegion() {
-		return theregion;
+		return region;
 	}
 
 
 	public void setRegion(Region region) {
-		this.theregion = region;
+		this.region = region;
 	}
 
 
