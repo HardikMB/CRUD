@@ -12,8 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import org.apache.logging.log4j.message.Message;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,6 +31,9 @@ public class Region {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int regionId;
 	
+	
+	@NotNull (message = "Region name cannot be null")
+
 	@Column(name = "REGION_NAME")
 	private String regionName;
 

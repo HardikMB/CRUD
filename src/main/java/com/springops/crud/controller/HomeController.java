@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.springops.crud.dao.BranchRepository;
 import com.springops.crud.model.Branch;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.springops.crud.dao.RegionRepository;
 import com.springops.crud.model.Region;
 import com.springops.crud.service.regionService;
 
 import javax.validation.Valid;
+
 
 @RestController
 public class HomeController {
@@ -40,11 +43,17 @@ public class HomeController {
 	public ResponseEntity< Region > getRegionById(@PathVariable(value = "regionId") Integer regionId)
 	{
 		Region reg = regionRepository.findById(regionId).get();
+		
+		if (reg.getRegionId() == 1) {
+			throw new RuntimeException("Something wrong in Home Controller");
+		}
 		return ResponseEntity.ok().body(reg);
 	}
 
 	@PostMapping("/region")
-	public Region createRegion(@Valid @RequestBody Region region) {
+	public Region createRegion(@Valid @RequestBody Region region) throws Exception {
+		
+		
 		return regionRepository.save(region);
 	}
 
@@ -68,8 +77,11 @@ public class HomeController {
 	@GetMapping("/branch/{branchId}")
 	public ResponseEntity< Branch > getBranchById(@PathVariable(value = "branchId") Integer branchId)
 	{
+		
 		Branch reg = branchRepository.findById(branchId).get();
 		return ResponseEntity.ok().body(reg);
+		
+		
 	}
 
 	@PostMapping("/branch")

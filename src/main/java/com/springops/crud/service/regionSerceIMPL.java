@@ -34,13 +34,9 @@ public class regionSerceIMPL implements regionService {
 	public void insertRegion(Region regionval) {
 		region.save(regionval);
 	}
-	
 	public Region updateRegion(Region regionVal) {
 	regionVal.setRegionName("Sanewadi");
 	region.save(regionVal);
 	return regionVal;
-	
 	}
-	
-	
 }

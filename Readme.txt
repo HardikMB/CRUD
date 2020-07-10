@@ -24,8 +24,16 @@ This will insert new branch under Region-1.
 Further tasks:
 1. I want to have  a context path in the application as /crudApp
 http://localhost:8080/crudApp/branch
+Solution1: The context path is set from application.properties file using the property name as "server.servlet.context-path".
+Solution2: The context path is set via Main method using System.setProperty function where  "server.servlet.context-path" parameter is set to the context path.
+
 2. incorporate data validation. You can do that in a service class
-3. Add global exception handler for spring bot controller
+Data validations are applied using the package javax.validations.contraints.*
+
+3. Add global exception handler for spring boot controller
+Global exception handler is added in com.springops.crud package using @ControllerAdvice
+Implemented a method to send a proper response back to browser so application does not catch
+
 4. add additional APIS-
     a. search the region by region name
     b. search the region whose name contains the given string
@@ -55,4 +63,4 @@ http://localhost:8080/crudApp/branch
                 the additional attribute to be generated dynamically for each individual region and branch
 
 
-
+blood group unique A,B,AB,O + AND -VE 

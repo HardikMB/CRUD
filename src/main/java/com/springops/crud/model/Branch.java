@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 
@@ -27,24 +30,35 @@ public class Branch {
 	@Column(name = "BRANCH_CODE")
 	private String branchCode;
 	
+	@Size(min = 5)
+	@NotNull
 	@Column(name = "ADDRESS1")
 	private String address1;
 	
+
 	@Column(name = "ADDRESS2")
 	private String address2;
 	
+	@NotNull
 	@Column(name = "BRANCH_CITY")
 	private String branchCity;
 	
+	@NotNull
 	@Column(name = "BRANCH_STATE")
 	private String branchState;
 	
+	@NotNull
 	@Column(name = "PIN_CODE")
 	private String pinCode;
 	
+	@NotNull
 	@Column(name = "IFSC_CODE")
 	private String iFSCcode;
 	
+	@NotNull
+	@Email (message = "Email Should be valid")
+	@Column(name =  "BRANCH_MAIL")
+	private String branchMail;
 	
 	@ManyToOne(fetch=FetchType.LAZY,optional = false)
 	@JoinColumn( name = "region_Id",nullable = false)
@@ -133,12 +147,23 @@ public class Branch {
 
 
 	public Region getRegion() {
+		System.out.println("Region Name:"+ region.getRegionName());
 		return region;
 	}
 
 
 	public void setRegion(Region region) {
 		this.region = region;
+	}
+
+
+	public String getBranchMail() {
+		return branchMail;
+	}
+
+
+	public void setBranchMail(String branchMail) {
+		this.branchMail = branchMail;
 	}
 
 
