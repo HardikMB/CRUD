@@ -60,7 +60,7 @@ public class User {
 	}
 
 	public void setBloodGroup(String bloodGroup) {
-		this.bloodGroup = bloodGroup;
+		this.bloodGroup = bloodGroup.toUpperCase();
 	}
 
 	public String toString () {

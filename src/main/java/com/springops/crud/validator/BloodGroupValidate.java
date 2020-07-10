@@ -11,7 +11,6 @@ public class BloodGroupValidate implements ConstraintValidator<BloodGroup,String
 	@Override
 	public boolean isValid(String bloodgrp, ConstraintValidatorContext context) {		
 		System.out.println(bloodgrp);
-		return  bloodgrp != null && bloodgrp.matches("(A|B|AB|O)[+-]") && (bloodgrp.length()<=3);
+		return  bloodgrp != null && bloodgrp.toUpperCase().matches("(A|B|AB|O)[+-]") && (bloodgrp.length()<=3);
 	}
-
 }

@@ -52,8 +52,6 @@ public class HomeController {
 
 	@PostMapping("/region")
 	public Region createRegion(@Valid @RequestBody Region region) throws Exception {
-		
-		
 		return regionRepository.save(region);
 	}
 

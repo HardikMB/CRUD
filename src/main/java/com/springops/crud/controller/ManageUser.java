@@ -18,21 +18,27 @@ import com.springops.crud.model.User;
 public class ManageUser<Model> {
 
 	//private User user;
-	
+
 	@Autowired
 	private UserRepository userRepository; 
-	
+
 	@PostMapping("/AddUser")
-	public User insertUser(@Valid @RequestBody User userr , BindingResult result, Model m) throws Exception {
-		 
-		  if(result.hasErrors()) {
-	            return null;
-	        }
-		System.out.println(userr.toString());
-		
-	return 	userRepository.save(userr);
+	public User insertUser(@Valid @RequestBody User userr , BindingResult result, Model m){
+//		try {
+			 
+			System.out.println(userr.toString());
+			 	userRepository.save(userr);
+//		}
+//		catch(Exception ex){
+//			System.out.println("Here Exception will be catched"+ ex.getMessage());
+//		}
+//		finally {
+//			System.out.println("Here final code will be executed");
+//		}
+//		
+			 	return userr;
 	}
-	
+
 	@GetMapping ("/ViewUsers")
 	public List<User> viewUser()
 	{
