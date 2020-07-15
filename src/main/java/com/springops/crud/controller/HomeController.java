@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -34,21 +35,45 @@ public class HomeController {
 	@Autowired
 	public BranchRepository branchRepository;
 
+	//	@GetMapping("/region")
+	//	public List < Region >  getAllRegions() {
+	//		return regionRepository.findAll();
+	//	}
+
 	@GetMapping("/region")
-	public List < Region >  getAllRegions() {
-		return regionRepository.findAll();
+	public List<Region> searchRegion(@RequestParam(required = false) String regioname){
+		if( regioname == null)
+			return regionRepository.findAll();
+
+		return regionRepository.findByRegionName(regioname);
 	}
+
+	@GetMapping("/regioNameLike")
+	public List<Region> searchRegionlike(@RequestParam(required = false) String regioNameLike){
+		if( regioNameLike == null)
+			return regionRepository.findAll();
+
+		return regionRepository.findByRegionNameContaining(regioNameLike.toUpperCase());
+	}
+
+
 
 	@GetMapping("/region/{regionId}")
 	public ResponseEntity< Region > getRegionById(@PathVariable(value = "regionId") Integer regionId)
 	{
 		Region reg = regionRepository.findById(regionId).get();
-		
+
 		if (reg.getRegionId() == 1) {
-			throw new RuntimeException("Something wrong in Home Controller");
+			throw new RuntimeException("Something wrong in Home Controller! Are you searching for region id 1?");
 		}
 		return ResponseEntity.ok().body(reg);
 	}
+
+	//	@GetMapping("/region")
+	//	public  Optional<Region> searchRegionbyRegionName(@RequestParam ("RegionName") String name)
+	//	{
+	//		return regionRepository.findByRegionName(name);
+	//	}
 
 	@PostMapping("/region")
 	public Region createRegion(@Valid @RequestBody Region region) throws Exception {
@@ -68,18 +93,60 @@ public class HomeController {
 	}
 
 	@GetMapping("/branch")
-	public List < Branch >  getAllBranchs() {
+	public List < Branch >  getAllBranches() {
 		return branchRepository.findAll();
 	}
 
+	@GetMapping("/branchbyPin")
+	public List < Branch >  getAllBranchesPinWise(
+			@RequestParam (required = false) String pin) {
+
+		if (pin!=null) {
+			return branchRepository.findByPinCode(pin);
+		}
+		return branchRepository.findAll();
+	}
+	
+	@GetMapping("/branchbyCity")
+	public List < Branch >  getAllBranchesCityWise(
+			@RequestParam (required = false) String city) {
+
+		if (city!=null) {
+			return branchRepository.findBybranchCity(city);
+		}
+		return branchRepository.findAll();
+	}
+
+	@GetMapping("/branchbyState")
+	public List < Branch >  getAllBranchesStateWise(
+			@RequestParam (required = false) String state) {
+
+		if (state!=null) {
+			return 	branchRepository.findByBranchState(state);
+		}
+		return branchRepository.findAll();
+	}
+
+	@GetMapping("/branchbyAddress")
+	public List < Branch >  getAllBranchesbyAddress(
+			@RequestParam (required = false) String add1) {
+
+		if (add1!=null) {
+			return 	branchRepository.findByAddress1Containing(add1.toUpperCase());
+		}
+		return branchRepository.findAll();
+	}
+
+	
+	
 	@GetMapping("/branch/{branchId}")
 	public ResponseEntity< Branch > getBranchById(@PathVariable(value = "branchId") Integer branchId)
 	{
-		
+
 		Branch reg = branchRepository.findById(branchId).get();
 		return ResponseEntity.ok().body(reg);
-		
-		
+
+
 	}
 
 	@PostMapping("/branch")

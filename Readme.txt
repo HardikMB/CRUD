@@ -35,13 +35,13 @@ Global exception handler is added in com.springops.crud package using @Controlle
 Implemented a method to send a proper response back to browser so application does not catch
 
 4. add additional APIS-
-    a. search the region by region name
-    b. search the region whose name contains the given string
-    c. search the branch by pincode
-    d. search the branch by city
-    e. search the branch by state
-    f. search the branch whose address contains given string
-    g. apply sorthing to the findAll() APIs.
+    a. search the region by region name - done
+    b. search the region whose name contains the given string  - done
+    c. search the branch by pincode  - done
+    d. search the branch by city - done
+    e. search the branch by state - done
+    f. search the branch whose address contains given string - done
+    g. apply sorting to the findAll() APIs.
        You can modify existing API or crate new APIS to retrive data in sorted order.
        Sorting for region should happen based on region name and branch-name for branch.
     h. for any individual record , construct a reference URL to itself
