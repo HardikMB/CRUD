@@ -28,8 +28,28 @@ public class User {
 	@BloodGroup
 	private String bloodGroup;
 	
+	@Column(name = "EMAIL_ID")
+	private String eMail;
 	
+	@Column(name = "PASSWORD")
+	private String password;
 	
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public int getUserId() {
 		return userId;
 	}

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CrudApplication {
 
 	public static void main(String[] args) {
-		System.setProperty("server.servlet.context-path", "/crudApp1");
+		//System.setProperty("server.servlet.context-path", "/crudApp1");
 		SpringApplication.run(CrudApplication.class, args);
 	}
 

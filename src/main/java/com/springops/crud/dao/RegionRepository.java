@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.springops.crud.model.Region;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface RegionRepository extends JpaRepository<Region, Integer> {
@@ -17,7 +16,8 @@ public interface RegionRepository extends JpaRepository<Region, Integer> {
     
 	@Query("select r from Region r where upper(r.regionName) like %:name% ")
 	public List<Region> findByRegionNameContaining(String name);
- @Override
+
+	@Override
 default Page<Region> findAll(Pageable pageable) {
 	// TODO Auto-generated method stub
 	return null;

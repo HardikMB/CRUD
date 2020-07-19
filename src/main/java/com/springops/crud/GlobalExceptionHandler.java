@@ -6,13 +6,10 @@ import java.util.Date;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
@@ -35,6 +32,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<ErroMsg>(errmgs, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(IllegalStateException.class)
+	public  ResponseEntity<ErroMsg> IllegalStateExc(IllegalStateException ex){
+		
+		ErroMsg errmgs = new ErroMsg(2, ex.getLocalizedMessage(), "Standard Exceptions", new Date());
+
+		return new ResponseEntity<ErroMsg>(errmgs, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+	
+	}
+	
 }
 
 class ErroMsg {

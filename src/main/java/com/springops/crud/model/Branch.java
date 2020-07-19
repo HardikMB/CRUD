@@ -3,7 +3,6 @@ package com.springops.crud.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,11 +40,11 @@ public class Branch {
 	
 	@NotNull
 	@Column(name = "BRANCH_CITY")
-	private String branchCity;
+	private String city;
 	
 	@NotNull
 	@Column(name = "BRANCH_STATE")
-	private String branchState;
+	private String state;
 	
 	@NotNull
 	@Column(name = "PIN_CODE")
@@ -58,7 +57,7 @@ public class Branch {
 	@NotNull
 	@Email (message = "Email Should be valid")
 	@Column(name =  "BRANCH_MAIL")
-	private String branchMail;
+	private String eMail;
 	
 	@ManyToOne(fetch=FetchType.LAZY,optional = false)
 	@JoinColumn( name = "region_Id",nullable = false)
@@ -107,22 +106,22 @@ public class Branch {
 
 
 	public String getBranchCity() {
-		return branchCity;
+		return city;
 	}
 
 
 	public void setBranchCity(String branchCity) {
-		this.branchCity = branchCity;
+		this.city = branchCity;
 	}
 
 
 	public String getBranchState() {
-		return branchState;
+		return state;
 	}
 
 
 	public void setBranchState(String branchState) {
-		this.branchState = branchState;
+		this.state = branchState;
 	}
 
 
@@ -158,12 +157,12 @@ public class Branch {
 
 
 	public String getBranchMail() {
-		return branchMail;
+		return eMail;
 	}
 
 
 	public void setBranchMail(String branchMail) {
-		this.branchMail = branchMail;
+		this.eMail = branchMail;
 	}
 
 
